@@ -80,11 +80,8 @@ def text_left(draw, text, x, y, font, fill=(240, 237, 232)):
 
 
 def text_center(draw, text, y, font, fill=(240, 237, 232)):
-    if hasattr(font, 'getlength'):
-        tw = font.getlength(text)
-    else:
-        bbox = draw.textbbox((0, 0), text, font=font)
-        tw = bbox[2] - bbox[0]
+    bbox = draw.textbbox((0, 0), text, font=font)
+    tw = bbox[2] - bbox[0]
     x = (W - tw) // 2
     draw.text((x, y), text, fill=fill, font=font)
 
@@ -235,11 +232,13 @@ def card_ending(quote="", cfg=None, keywords=None):
 
     draw_line_h(d, 100, width=3)
 
-    # 金句（统一颜色，不再对特定字符做特殊处理）
+    # 金句
     y = 350
     for line in quote.split('\n'):
         if line.strip():
-            text_center(d, line, y, get_font(48), fill=s["TEXT_PRIMARY"])
+            # 突出「不」字所在行为红色
+            fill = s["ACCENT"] if '不' in line else s["TEXT_PRIMARY"]
+            text_center(d, line, y, get_font(48), fill=fill)
             y += 75
 
     # 大印章
@@ -307,8 +306,8 @@ def generate_carousel(content, cfg=None):
         cfg=cfg
     ))
 
-    # 内容卡（最多5张）
-    for i, card in enumerate(content.get("cards", [])[:5], start=1):
+    # 内容卡（数量由输入内容决定，最多20张）
+    for i, card in enumerate(content.get("cards", [])[:20], start=1):
         paths.append(card_content(i, card["title"], card["body"], cfg=cfg))
 
     # 结尾
