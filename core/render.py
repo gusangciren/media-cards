@@ -24,6 +24,12 @@ FONT_FALLBACKS = [
     # Linux
     "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
     "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf",
+    # Windows 常用中文字体路径
+    "C:\\Windows\\Fonts\\STKAITI.TTF",      # 华文楷体
+    "C:\\Windows\\Fonts\\STSONG.TTF",        # 华文宋体
+    "C:\\Windows\\Fonts\\simsun.ttc",        # 宋体
+    "C:\\Windows\\Fonts\\msyh.ttc",          # 微软雅黑
+    "C:\\Windows\\Fonts\\simkai.ttf",        # 楷体
     # 用户指定
     FONT_PATH,
 ]
@@ -119,11 +125,14 @@ def draw_wrapped_text(draw, text, x, y, font, fill, max_width, line_spacing=1.6)
     return current_y
 
 
-def text_center(draw, text, y, font, fill):
+def text_center(draw, text, y, font, fill, canvas_width=1080):
     """水平居中绘制单行文本"""
     bbox = draw.textbbox((0, 0), text, font=font)
     tw = bbox[2] - bbox[0]
-    x = (font.getlength and 0 or (W := 1080) - tw) // 2
+    # 优先使用 getlength（PIL 10+），否则用 canvas_width 计算
+    if hasattr(font, 'getlength'):
+        tw = font.getlength(text)
+    x = (canvas_width - tw) // 2
     draw.text((x, y), text, fill=fill, font=font)
 
 
