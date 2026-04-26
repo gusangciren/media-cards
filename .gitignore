@@ -1,0 +1,27 @@
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.vscode/
+.idea/
+*.log
+
+# 输出图片（生成后会在 ~/.qclaw/workspace/）
+xhs-*.png
+
+# 字体文件（单独下载）
+*.ttf
+*.ttc
+*.woff
+*.woff2
+
+# 虚拟环境
+venv/
+env/
+.venv/
+
+# macOS
+.DS_Store
+
+# 备选字体子集
+node_modules/
