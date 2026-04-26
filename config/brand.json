@@ -1,0 +1,30 @@
+{
+  "name": "你的名字",
+  "handle": "@你的账号名",
+  "avatar": "assets/avatar.jpg",
+  "card": {
+    "border_color": "#E53935",
+    "border_width": 25,
+    "canvas_width": 1179,
+    "canvas_height": 1572,
+    "font_size_name": 56,
+    "font_size_handle": 32,
+    "font_size_body": 58,
+    "content_y": 520,
+    "line_height": 115
+  },
+  "carousel": {
+    "brand": "种一个梦",
+    "accent_color": [197, 61, 67],
+    "font_size_tag": 28,
+    "font_size_title": 140,
+    "font_size_subtitle": 68,
+    "font_size_tagline": 34,
+    "font_size_num": 90,
+    "font_size_content_title": 56,
+    "font_size_content_body": 52,
+    "font_size_quote": 48,
+    "font_size_author": 26,
+    "font_size_ending": 42
+  }
+}
